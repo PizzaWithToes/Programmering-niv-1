@@ -2,6 +2,7 @@ def TärningSpel():
     #imports
     import random
     import TextColor
+    import os
     #variablar
     Total = int(0)
     Försök = int(5)
@@ -9,15 +10,17 @@ def TärningSpel():
     print(f'TIPS: Du kan skriva {TextColor.Y}EXIT{TextColor.RESET} för att avsluta spelet tidigt!')
     #loop
     while True:
-        hej = input(f'{TextColor.BB}{TextColor.LB}Tryck på ENTER för att slå tärningen{TextColor.RESET}\n')
+        hej = input(f'{TextColor.BB}{TextColor.LB}Tryck på ENTER för att slå tärningen{TextColor.RESET}\n').lower()
         #ifall spelaren skriver EXIT, avsluta spelet tidigt
-        if hej == 'EXIT':
+        if hej == 'exit':
+            os.system('cls')
             break
         #här sker allting i spelet
         Försök -= 1
         randomNumber = random.randint(1,20)
         Total += randomNumber
         #här säger programmet vad som har hänt till spelaren
+        os.system('cls')
         print(f'Du har {TextColor.R}{Försök}{TextColor.RESET} försök kvar.\n')
         print(f'Du rullade {TextColor.Y}{randomNumber}{TextColor.RESET}. Totalt ligger du på {TextColor.G}{Total}{TextColor.RESET}.\n')
         # här säger programmet hur mycket som är kvar tills spelaren vinner
@@ -36,11 +39,13 @@ def TärningSpel():
             break
     #ifall programmet ska köras om eller inte
     while True:
-        Igen = input('Vill du köra igen?(Y/N)')
-        if Igen == 'Y':
+        Igen = input('Vill du köra igen?(Y/N)').lower()
+        if Igen == 'y':
+            os.system('cls')
             return TärningSpel()
-        elif Igen == 'N':
-            print('ok!')
+        elif Igen == 'n':
+            os.system('cls')
             break
         else:
-            print('Förstod inte kommandot. Se till att använda stor bokstav!')
+            os.system('cls')
+            print(f'{TextColor.R}Förstod inte kommandot.{TextColor.RESET}')
