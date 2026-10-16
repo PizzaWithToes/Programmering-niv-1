@@ -25,7 +25,7 @@ def TärningSpel():
         print(f'Du rullade {TextColor.Y}{randomNumber}{TextColor.RESET}. Totalt ligger du på {TextColor.G}{Total}{TextColor.RESET}.\n')
         # här säger programmet hur mycket som är kvar tills spelaren vinner
         Kvar = Målet - Total
-        if Kvar > 1:
+        if Kvar >= 1:
             print(f'Bara {TextColor.B}{Kvar}{TextColor.RESET} kvar!\n')
         elif Kvar <= 0:
             print(f'Bara 0 kvar!')
