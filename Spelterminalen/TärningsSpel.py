@@ -3,6 +3,11 @@ def TärningSpel():
     import random
     import TextColor
     import os
+
+    # clear definition
+    def clear():
+        os.system('cls')
+
     #variablar
     Total = int(0)
     Försök = int(5)
@@ -13,14 +18,14 @@ def TärningSpel():
         hej = input(f'{TextColor.BB}{TextColor.LB}Tryck på ENTER för att slå tärningen{TextColor.RESET}\n').lower()
         #ifall spelaren skriver EXIT, avsluta spelet tidigt
         if hej == 'exit':
-            os.system('cls')
+            clear()
             break
         #här sker allting i spelet
         Försök -= 1
         randomNumber = random.randint(1,20)
         Total += randomNumber
         #här säger programmet vad som har hänt till spelaren
-        os.system('cls')
+        clear()
         print(f'Du har {TextColor.R}{Försök}{TextColor.RESET} försök kvar.\n')
         print(f'Du rullade {TextColor.Y}{randomNumber}{TextColor.RESET}. Totalt ligger du på {TextColor.G}{Total}{TextColor.RESET}.\n')
         # här säger programmet hur mycket som är kvar tills spelaren vinner
@@ -41,11 +46,11 @@ def TärningSpel():
     while True:
         Igen = input('Vill du köra igen?(Y/N)').lower()
         if Igen == 'y':
-            os.system('cls')
+            clear()
             return TärningSpel()
         elif Igen == 'n':
-            os.system('cls')
+            clear()
             break
         else:
-            os.system('cls')
+            clear()
             print(f'{TextColor.R}Förstod inte kommandot.{TextColor.RESET}')
