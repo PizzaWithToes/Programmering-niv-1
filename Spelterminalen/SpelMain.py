@@ -4,18 +4,23 @@
 import TärningsSpel
 import os
 import TextColor
-def SpelTerminalStart():
+
+# clear definition
+def clear():
     os.system('cls')
+
+def SpelTerminalStart():
+    clear()
     while True:
         Välkommen = input('Välkommen till spelterminalen. Skriv "HJÄLP" för hjälp.').lower()
         if Välkommen == 'hjälp':
-            os.system('cls')
+            clear()
             print(f'{TextColor.Y}Tillgängliga spel{TextColor.RESET}:\n 1. Tärning Spel')
         elif Välkommen == 'tärning spel':
-            os.system('cls')
+            clear()
             TärningsSpel.TärningSpel()
         else:
-            os.system('cls')
+            clear()
             print(f'{TextColor.R}Fel kommando, försök igen.{TextColor.RESET}')
 
 SpelTerminalStart()
