@@ -4,7 +4,7 @@ def HängaGubbe():
     import os
     import TextColor
     #variablar
-    ordlista = ["python", "programmering", "dator", "utvecklare", "algoritm"]
+    ordlista = ["python", "programmering", "dator", "utvecklare", "algoritm", "skola", "utbildning" "betyg", "whiteboard", "laptop", "mobiltelefon", "halloween", "sommar", "höstlov"]
     hemligtOrd = random.choice(ordlista)
     gissadeBokstäver = []
     felaktigaGissningar = 0
@@ -13,8 +13,8 @@ def HängaGubbe():
     # clear definition
     def clear():
         os.system('cls')
-
     clear()
+    print(f'TIPS: Du kan skriva {TextColor.Y}EXIT{TextColor.RESET} för att avsluta spelet tidigt!')
     print(f"{TextColor.LBB}Välkommen till Hänga gubbe!{TextColor.RESET}")
 
     while felaktigaGissningar < maxFel:
@@ -25,6 +25,7 @@ def HängaGubbe():
                 visat_ord += x + " "
             else:
                 visat_ord += f"{TextColor.Y}_ {TextColor.RESET}"
+        
 
         print("\nOrd: " + visat_ord.strip())
         print(f"\nFelaktiga gissningar kvar: {TextColor.R}{maxFel - felaktigaGissningar}{TextColor.RESET}")
@@ -35,6 +36,9 @@ def HängaGubbe():
             break
 
         gissning = input("\nGissa en bokstav: ").lower()
+        if gissning == 'exit':
+            clear()
+            break
         # Anti cheat
         if len(gissning) != 1 or not gissning.isalpha():
             clear()
@@ -45,6 +49,7 @@ def HängaGubbe():
             clear()
             print(f"{TextColor.R}Du har redan gissat på den bokstaven.{TextColor.RESET}")
             continue
+
 
         gissadeBokstäver.append(gissning)
         # Om man gissade rätt eller fel
@@ -61,7 +66,7 @@ def HängaGubbe():
         print(f"{TextColor.R}\nDu förlorade. Det hemliga ordet var: {hemligtOrd}{TextColor.RESET}")
     # Ifall programmet ska köras om eller inte
     while True:
-        Igen = input('Vill du köra igen?(Y/N)').lower()
+        Igen = input(f'\nVill du köra igen?(Y/N)').lower()
         if Igen == 'y':
             clear()
             return HängaGubbe()
@@ -71,4 +76,3 @@ def HängaGubbe():
         else:
             clear()
             print(f'{TextColor.R}Förstod inte kommandot.{TextColor.RESET}')
-HängaGubbe()
