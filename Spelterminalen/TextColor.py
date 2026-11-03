@@ -7,3 +7,4 @@ W = colorama.Fore.WHITE
 LB = colorama.Fore.LIGHTBLACK_EX
 BB = colorama.Back.BLACK
 RESET = colorama.Style.RESET_ALL
+LBB = colorama.Back.LIGHTBLACK_EX
