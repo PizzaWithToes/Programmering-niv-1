@@ -4,18 +4,21 @@ def HängaGubbe():
     import os
     import TextColor
     #variablar
-    ordlista = ["python", "programmering", "dator", "utvecklare", "algoritm", "skola", "utbildning" "betyg", "whiteboard", "laptop", "mobiltelefon", "halloween", "sommar", "höstlov"]
+    ordlista = ["python", "programmering", "dator", "utvecklare", "algoritm", "skola", "utbildning", "betyg", "whiteboard", "laptop", "mobiltelefon", "halloween", "sommar", "höstlov"]
     hemligtOrd = random.choice(ordlista)
     gissadeBokstäver = []
+    gissadeBokstäver2 = []
     felaktigaGissningar = 0
     maxFel = 6
 
     # clear definition
     def clear():
         os.system('cls')
+    def win():
+        print(f"{TextColor.G}Grattis! Du vann!{TextColor.RESET}")
     clear()
     print(f'TIPS: Du kan skriva {TextColor.Y}EXIT{TextColor.RESET} för att avsluta spelet tidigt!')
-    print(f"{TextColor.LBB}Välkommen till Hänga gubbe!{TextColor.RESET}")
+    print(f"\t\t{TextColor.G}    Välkommen till Hänga gubbe!{TextColor.RESET}")
 
     while felaktigaGissningar < maxFel:
         # Visa ordet med understreck
@@ -25,17 +28,20 @@ def HängaGubbe():
                 visat_ord += x + " "
             else:
                 visat_ord += f"{TextColor.Y}_ {TextColor.RESET}"
-        
 
-        print("\nOrd: " + visat_ord.strip())
+        print("\n\t\t\tOrd: " + visat_ord.strip())
         print(f"\nFelaktiga gissningar kvar: {TextColor.R}{maxFel - felaktigaGissningar}{TextColor.RESET}")
+        print(TextColor.R,TextColor.BB,*gissadeBokstäver2,TextColor.RESET)
 
         # Vinnst kondition
         if "_" not in visat_ord:
-            print(f"{TextColor.G}Grattis! Du vann!{TextColor.RESET}")
+            win()
             break
 
-        gissning = input("\nGissa en bokstav: ").lower()
+        gissning = input(f"\n\t\t\t{TextColor.Y}Gissa en bokstav{TextColor.RESET}: \n\t\t\t\t").lower()
+        if gissning == hemligtOrd:
+            win()
+            break
         if gissning == 'exit':
             clear()
             break
@@ -52,8 +58,10 @@ def HängaGubbe():
 
 
         gissadeBokstäver.append(gissning)
+        gissadeBokstäver2.append(gissning)
         # Om man gissade rätt eller fel
         if gissning in hemligtOrd:
+            gissadeBokstäver2.pop()
             clear()
             print(f"{TextColor.G}Rätt! '{gissning}' finns i ordet.{TextColor.RESET}")
         else:
