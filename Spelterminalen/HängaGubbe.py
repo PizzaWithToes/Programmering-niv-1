@@ -3,11 +3,13 @@ def HängaGubbe():
     import random
     import os
     import TextColor
+    import re
     #variablar
     ordlista = ["python", "programmering", "dator", "utvecklare", "algoritm", "skola", "utbildning", "betyg", "whiteboard", "laptop", "mobiltelefon", "halloween", "sommar", "höstlov"]
     hemligtOrd = random.choice(ordlista)
     gissadeBokstäver = []
     gissadeBokstäver2 = []
+    gissadeOrd = ['.']
     felaktigaGissningar = 0
     maxFel = 6
 
@@ -24,10 +26,16 @@ def HängaGubbe():
         # Visa ordet med understreck
         visat_ord = ""
         for x in hemligtOrd:
-            if x in gissadeBokstäver:
+            if hemligtOrd == gissadeOrd[0]:
+                visat_ord = hemligtOrd
+                continue
+            elif x in gissadeBokstäver:
                 visat_ord += x + " "
             else:
                 visat_ord += f"{TextColor.Y}_ {TextColor.RESET}"
+
+                
+
 
         print("\n\t\t\tOrd: " + visat_ord.strip())
         print(f"\nFelaktiga gissningar kvar: {TextColor.R}{maxFel - felaktigaGissningar}{TextColor.RESET}")
@@ -40,13 +48,15 @@ def HängaGubbe():
 
         gissning = input(f"\n\t\t\t{TextColor.Y}Gissa en bokstav{TextColor.RESET}: \n\t\t\t\t").lower()
         if gissning == hemligtOrd:
-            win()
-            break
+            gissadeOrd.insert(0, gissning)
         if gissning == 'exit':
             clear()
             break
         # Anti cheat
-        if len(gissning) != 1 or not gissning.isalpha():
+        if gissning == hemligtOrd:
+            clear()
+            continue
+        elif len(gissning) != 1 or not gissning.isalpha():
             clear()
             print(f"{TextColor.R}Skriv en enda bokstav.{TextColor.RESET}")
             continue
